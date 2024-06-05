@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1o5oi6rl32se"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_sb15y"]
+[ext_resource type="PackedScene" uid="uid://biqpoxia0rju0" path="res://scenes/player.tscn" id="2_5ijf8"]
+[ext_resource type="Texture2D" uid="uid://c74xgo5a30dkb" path="res://icon.svg" id="3_dtyts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpxa5"]
+size = Vector2(1017, 20)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_sb15y")
+
+[node name="Player" parent="." instance=ExtResource("2_5ijf8")]
+position = Vector2(253, 137)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-164, 179)
+scale = Vector2(7.9375, 0.15625)
+texture = ExtResource("3_dtyts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-165, 179)
+shape = SubResource("RectangleShape2D_rpxa5")

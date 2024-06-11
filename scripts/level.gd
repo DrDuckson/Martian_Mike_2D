@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var next_level: PackedScene = null
-@export var level_time = 60
+@export var level_time = 120
 @export var is_final_level: bool = false
 
 @onready var start_zone = $StartZone
@@ -29,6 +29,7 @@ func _ready():
 	exit.body_entered.connect(_on_exit_body_entered)
 	deathzone.body_entered.connect(_on_deathzone_body_entered)
 	levelTimer()
+	ui_layer.show_start_menu(false)
 	
 func levelTimer():
 	time_left = level_time
@@ -62,6 +63,7 @@ func _on_trap_touched_player():
 	reset_player()
 
 func reset_player():
+	AudioPlayer.play_sfx("hurt")
 	player.velocity = Vector2.ZERO
 	player.global_position = start_zone.get_spawn_pos()
 
